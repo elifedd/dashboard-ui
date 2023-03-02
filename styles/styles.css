@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 
-html, body, .container {
+html, body {
     height: 100%;
 }
 
@@ -15,6 +15,7 @@ body {
 /* -------------- CONTAINER -------------- */
 .container {
     display: flex;
+    height: 100%;
 }
 
 /* -------------- SIDEBAR -------------- */
@@ -25,6 +26,7 @@ body {
     justify-content: space-between;
     border-right: 1px solid #F3F5F7;
     padding: 0 16px;
+    overflow: auto;
 }
 
 .sidebar__logo {
@@ -66,6 +68,7 @@ body {
     border-radius: 10px;
     transition: all .4s;
     cursor: pointer;
+    white-space: nowrap;
 }
 
 .side-nav__item.last-item {
@@ -81,11 +84,16 @@ body {
     color: white;
 }
 
+.toggle {
+  padding-right: 18px;
+}
+
 /* -------------- MAIN CONTENT -------------- */
 .main-content {
     display: flex;
     flex-direction: column;
     width: 100%;
+    overflow: auto;
 }
 
 /* -------------- TOP CONTAINER -------------- */
@@ -166,11 +174,11 @@ body {
 
 /* -------------- BOTTOM CONTAINER -------------- */
 .bottom-container {
-    height: 100%;
     display: flex;
     gap: 24px;
     padding: 32px;
     background-color: #F3F5F7;
+    height: 100%;
 }
 
 .box {
@@ -181,16 +189,20 @@ body {
 }
 
 .bottom-container__left {
-    flex: 5;
+    width: 70%;
 }
 
 .bottom-container__right {
-    flex: 2;
+    width: 30%;
+}
+
+.spending-statistics {
+    max-height: 338px;
 }
 
 /* -------------- BAR CHART -------------- */
 .bar-chart {
-    max-height: 338px;
+    max-height: 223px;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -242,7 +254,7 @@ body {
 }
 
 .price {
-    line-height: 48px;
+    line-height: 150%;
     margin-bottom: 14px;
 }
 
@@ -286,10 +298,15 @@ body {
     margin-left: 8px;
 }
 
+.transaction-box {
+   margin-bottom: 0; 
+}
+
 .transaction-history {
     width: 100%;
     text-align: left;
     vertical-align: middle;
+    margin-top: 24px;
 }
 
 /* -------------- TABLE -------------- */
@@ -298,19 +315,24 @@ tr > th {
     font-size: 12px;
     line-height: 150%;
     color: #90A3BF;
+    padding-bottom: 24px;
 }
 
 tr > td {
     font-weight: 600;
     font-size: 14px;
-    line-height: 150%;
     letter-spacing: -2%;
+    padding: 8px 0;
 }
 
 tr > td:first-child {
     display: flex;
     align-items: center;
     gap: 9px;
+}
+
+.status {
+    margin-right: 8px;
 }
 
 /* -------------- BUTTON -------------- */
@@ -430,4 +452,102 @@ tr > td:first-child {
 
 .sixth {
     background: #A1A9FE;
+}
+
+@media (max-width: 1300px) {
+    .bottom-container {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .bottom-container__left, .bottom-container__right {
+        width: 100%;
+    }
+}
+
+@media(max-width: 900px) {
+    .total-box {
+        flex-direction: column;
+    }
+
+    .total-box__left {
+        margin-right: 0;
+        border-right: none;
+        border-bottom: 1px solid #F3F5F7;
+        padding-bottom: 24px;
+        margin-bottom: 24px;
+    }
+
+    .up-arrow {
+        margin-right: 0;
+    }
+}
+
+@media(max-width: 780px) {
+    .top-container {
+        flex-direction: column;
+        gap: 18px;
+    }
+
+    .user-nav {
+        justify-content: space-between;
+    }
+
+    .section-header {
+        font-size: 18px;
+    }
+
+    table, tbody, th, td, tr { 
+		display: block; 
+	}
+
+    tr > th {
+        position: absolute;
+		top: -9999px;
+		left: -9999px;
+    }
+
+    td { 
+		/* Behave  like a "row" */
+		border: none;
+		border-bottom: 1px solid #F3F5F7; 
+		position: relative;
+		padding-left: 50%; 
+	}
+
+    td::before {
+        position: absolute;
+        left: 0;
+    }
+
+    tr > td {
+        text-align: end;
+    }
+
+    tr > td:first-child {
+        justify-content: end;
+    }
+
+    td:nth-of-type(1):before { content: "Transactions"; }
+    td:nth-of-type(2):before { content: "Date"; }
+    td:nth-of-type(3):before { content: "Amount"; }
+    td:nth-of-type(4):before { content: "Status"; }
+
+    .total-box p, .box p {
+        font-size: 16px;
+    }
+
+    .btn {
+        width: 45%;
+    }
+
+    .pie-chart__labels-item {
+        font-size: 16px;
+    }
+}
+
+@media(max-width: 540px) {
+    .sidebar {
+        display: none;
+    }
 }

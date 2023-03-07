@@ -25,6 +25,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    flex-shrink: 0;
     border-right: 1px solid #F3F5F7;
     padding: 0 16px;
     overflow: auto;
@@ -179,6 +180,7 @@ body {
     gap: 24px;
     padding: 32px;
     background-color: #F3F5F7;
+    height: 100%;
 }
 
 .box {
@@ -344,6 +346,7 @@ tr > td:first-child {
 
 .btn {
     padding: 16px 20px;
+    white-space: nowrap;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -550,7 +553,7 @@ tr > td:first-child {
     }
 }
 
-@media(max-width: 540px) {
+@media(max-width: 660px) {
     .sidebar {
         display: none;
     }
